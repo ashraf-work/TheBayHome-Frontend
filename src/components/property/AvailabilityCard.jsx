@@ -192,10 +192,10 @@ export default function AvailabilityCard({
       children: guests.children,
       infants: guests.infants,
     });
-    if (!isAuthenticated) {
-      router.push(`/login?next=${encodeURIComponent("/checkout")}`);
-      return;
-    }
+    // if (!isAuthenticated) {
+    //   router.push(`/login?next=${encodeURIComponent("/checkout")}`);
+    //   return;
+    // }
     router.push("/checkout");
   };
 
