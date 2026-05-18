@@ -1,0 +1,519 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "react-day-picker/dist/style.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-script: var(--font-caveat), "Segoe Script", cursive;
+
+  --color-background: #ffffff;
+  --color-foreground: #033545;
+
+  --color-card: #ffffff;
+  --color-card-foreground: #0b1f2a;
+
+  --color-popover: #ffffff;
+  --color-popover-foreground: #0b1f2a;
+
+  --color-primary: #0b7c83;
+  --color-primary-foreground: #ffffff;
+
+  --color-secondary: #eaf6f6;
+  --color-secondary-foreground: #0b5555;
+
+  --color-muted: #f4f7f7;
+  --color-muted-foreground: #013449;
+
+  --color-accent: #fc8a00;
+  --color-accent-foreground: #ffffff;
+
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #ffffff;
+
+  --color-border: #e3edee;
+  --color-input: #e3edee;
+  --color-ring: #0d8e8e;
+
+  --color-teal-top: #61b6bc;
+  --color-teal-band: #2f9fa3;
+  --color-teal-deep: #0b6f73;
+
+  --color-orange-band: #f2a33a;
+  --color-orange-deep: #e8931c;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html,
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+  .font-script {
+    font-family: var(--font-script);
+  }
+  .font-display {
+    font-family: var(--font-display);
+  }
+  ::selection {
+    background-color: var(--color-primary);
+    color: white;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f4f7f7;
+}
+::-webkit-scrollbar-thumb {
+  background: #bcd7d7;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0d8e8e;
+}
+
+/* Reusable utility for the signature "script accent" text */
+.script-accent {
+  font-family: var(--font-script);
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+/* Smooth focus ring */
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Animations */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-up {
+  animation: fade-up 0.5s ease-out both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out both;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Booking calendar — Airbnb-inspired styling on top of react-day-picker v9
+   ───────────────────────────────────────────────────────────────────────── */
+.booking-calendar-wrapper .rdp-root {
+  --rdp-accent-color: var(--color-primary);
+  --rdp-accent-background-color: transparent;
+  --rdp-day-height: 42px;
+  --rdp-day-width: 42px;
+  --rdp-day_button-height: 42px;
+  --rdp-day_button-width: 42px;
+  --rdp-day_button-border-radius: 9999px;
+  --rdp-disabled-opacity: 0.45;
+  --rdp-outside-opacity: 0.5;
+  --rdp-weekday-padding: 0;
+  --rdp-weekday-text-align: center;
+  --rdp-weekday-font: 600 11px / 1 var(--font-sans);
+  --rdp-day-font: 500 13px / 1 var(--font-sans);
+  --rdp-month-caption-font: 600 16px / 1 var(--font-display);
+
+  font-family: var(--font-sans);
+  color: var(--color-foreground);
+}
+
+.booking-calendar-wrapper .rdp-months {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 28px;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 100% !important;
+}
+
+.booking-calendar-wrapper.booking-calendar-mobile .rdp-months {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 24px;
+  align-items: center;
+}
+
+.booking-calendar-wrapper .rdp-month {
+  margin: 0;
+}
+
+.booking-calendar-wrapper .rdp-month_caption {
+  text-align: center;
+  padding: 0 0 12px;
+  color: var(--color-foreground);
+}
+
+.booking-calendar-wrapper .rdp-caption_label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+}
+
+.booking-calendar-wrapper .rdp-nav {
+  display: flex;
+  gap: 4px;
+}
+
+.booking-calendar-wrapper .rdp-nav button,
+.booking-calendar-wrapper .rdp-button_previous,
+.booking-calendar-wrapper .rdp-button_next {
+  height: 32px;
+  width: 32px;
+  border-radius: 9999px;
+  color: var(--color-foreground);
+  border: 1px solid var(--color-border);
+  background: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background-color 0.15s,
+    color 0.15s,
+    border-color 0.15s;
+}
+
+.booking-calendar-wrapper .rdp-nav button:hover,
+.booking-calendar-wrapper .rdp-button_previous:hover,
+.booking-calendar-wrapper .rdp-button_next:hover {
+  background: var(--color-secondary);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.booking-calendar-wrapper .rdp-weekday {
+  color: var(--color-muted-foreground);
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 0 8px;
+}
+
+.booking-calendar-wrapper .rdp-day {
+  border-radius: 9999px;
+}
+
+.booking-calendar-wrapper .rdp-day_button {
+  border-radius: 9999px;
+  font-weight: 500;
+  color: var(--color-foreground);
+  transition:
+    background-color 0.15s,
+    color 0.15s,
+    border-color 0.15s;
+}
+
+.booking-calendar-wrapper .rdp-day_button:hover {
+  background: var(--color-foreground);
+  color: white;
+}
+
+.booking-calendar-wrapper .rdp-today .rdp-day_button {
+  font-weight: 700;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+.booking-calendar-wrapper .rdp-disabled,
+.booking-calendar-wrapper .rdp-day_button[disabled] {
+  color: var(--color-muted-foreground);
+  text-decoration: line-through;
+  opacity: 0.45;
+  cursor: not-allowed !important;
+}
+
+.booking-calendar-wrapper .rdp-disabled .rdp-day_button:hover,
+.booking-calendar-wrapper .rdp-day_button[disabled]:hover {
+  background: transparent;
+  color: var(--color-muted-foreground);
+}
+
+/* Booked dates */
+.booking-calendar-wrapper .rdp-booked .rdp-day_button {
+  background: #fff5f5;
+  color: #b13a3a;
+  border: 1px solid #f4b4b4;
+  text-decoration: line-through;
+  font-weight: 600;
+}
+
+.booking-calendar-wrapper .rdp-booked .rdp-day_button:hover {
+  background: #fff5f5;
+  color: #b13a3a;
+}
+
+/* Custom range preview/selected range */
+.booking-calendar-wrapper .rdp-custom-in-range {
+  background: var(--color-primary);
+}
+
+.booking-calendar-wrapper .rdp-custom-in-range .rdp-day_button {
+  background: var(--color-primary);
+  color: white;
+  font-weight: 600;
+}
+
+/* Start and end dates */
+.booking-calendar-wrapper .rdp-custom-range-start .rdp-day_button,
+.booking-calendar-wrapper .rdp-custom-range-end .rdp-day_button {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+  font-weight: 800;
+  position: relative;
+  z-index: 2;
+}
+
+.booking-calendar-wrapper .rdp-custom-range-start .rdp-day_button:hover,
+.booking-calendar-wrapper .rdp-custom-range-end .rdp-day_button:hover {
+  background: var(--color-teal-deep);
+  color: white;
+}
+
+/* Range shape */
+.booking-calendar-wrapper .rdp-custom-range-start {
+  background: linear-gradient(
+    to right,
+    transparent 50%,
+    var(--color-secondary) 50%
+  );
+}
+
+.booking-calendar-wrapper .rdp-custom-range-end {
+  background: linear-gradient(
+    to right,
+    var(--color-secondary) 50%,
+    transparent 50%
+  );
+}
+
+.booking-calendar-wrapper .rdp-custom-range-start.rdp-custom-range-end {
+  background: transparent;
+}
+
+/* Prevent DayPicker built-in selection classes from interfering */
+.booking-calendar-wrapper .rdp-selected .rdp-day_button,
+.booking-calendar-wrapper .rdp-range_start .rdp-day_button,
+.booking-calendar-wrapper .rdp-range_end .rdp-day_button,
+.booking-calendar-wrapper .rdp-range_middle .rdp-day_button {
+  background: inherit;
+  color: inherit;
+}
+
+/* Keep our custom classes stronger */
+.booking-calendar-wrapper .rdp-custom-range-start .rdp-day_button,
+.booking-calendar-wrapper .rdp-custom-range-end .rdp-day_button {
+  background: var(--color-primary) !important;
+  color: white !important;
+}
+
+.booking-calendar-wrapper .rdp-custom-range-start .rdp-day_button {
+  border-top-right-radius: 96px !important;
+  border-bottom-right-radius: 96px !important;
+}
+
+.booking-calendar-wrapper .rdp-custom-range-end .rdp-day_button {
+  border-top-left-radius: 96px !important;
+  border-bottom-left-radius: 96px !important;
+}
+
+.booking-calendar-wrapper
+  .rdp-custom-in-range:not(.rdp-custom-range-start):not(.rdp-custom-range-end)
+  .rdp-day_button {
+  background: var(--color-primary) !important;
+  color: white !important;
+  border-radius: 0% !important;
+}
+
+.booking-calendar-wrapper .rdp-month,
+.booking-calendar-wrapper .rdp-month_grid {
+  max-width: 100%;
+}
+
+.booking-calendar-wrapper .rdp-month_grid {
+  border-collapse: collapse;
+}
+
+@media (max-width: 360px) {
+  .booking-calendar-wrapper .rdp-root {
+    --rdp-day-height: 38px;
+    --rdp-day-width: 38px;
+    --rdp-day_button-height: 38px;
+    --rdp-day_button-width: 38px;
+  }
+}
+
+/* phone input */
+.PhoneInput .PhoneInputInput {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* prose html tags styling */
+
+.prose h1 {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 800;
+  margin: 1rem 0 0.75rem;
+}
+
+.prose h2 {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+  margin: 1rem 0 0.75rem;
+}
+
+.prose h3 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  margin: 1rem 0 0.5rem;
+}
+
+.prose h4 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  margin: 0.75rem 0 0.5rem;
+}
+
+.prose h5 {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  margin: 0.75rem 0 0.5rem;
+}
+
+.prose h6 {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 700;
+  margin: 0.75rem 0 0.5rem;
+}
+
+.prose p {
+  margin: 0.75rem 0;
+}
+
+.prose ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin: 0.75rem 0;
+}
+
+.prose ol {
+  list-style: decimal;
+  padding-left: 1.5rem;
+  margin: 0.75rem 0;
+}
+
+.prose strong {
+  font-weight: 700;
+}
+
+.prose em {
+  font-style: italic;
+}
+
+.prose {
+  color: var(--color-foreground);
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  color: var(--color-foreground);
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+.prose p {
+  margin: 0.75rem 0;
+  color: var(--color-card-foreground);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.5rem;
+  margin: 0.75rem 0;
+  color: var(--color-card-foreground);
+}
+
+.prose li {
+  margin: 0.35rem 0;
+}
+
+.prose a {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.prose blockquote {
+  border-left: 4px solid var(--color-primary);
+  padding-left: 1rem;
+  color: var(--color-muted-foreground);
+  font-style: italic;
+}
+
+.prose strong {
+  font-weight: 700;
+  color: var(--color-foreground);
+}
+
+.prose em {
+  font-style: italic;
+}
