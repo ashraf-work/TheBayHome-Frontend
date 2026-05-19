@@ -384,7 +384,7 @@ function AccountSection() {
     <section className="mb-10">
 
 
-      <div className="rounded-3xl border border-[var(--color-border)] bg-white p-7 shadow-sm max-w-4xl">
+      <div className="rounded-3xl border border-[var(--color-border)] bg-white p-7 shadow-sm">
 
          <StepHeader step="1" title="Your Account" />
 
