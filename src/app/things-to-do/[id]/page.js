@@ -130,7 +130,7 @@ export default function ThingToDoDetailPage() {
                 <iframe
                   title={`Map of ${thing.location?.address || thing.name}`}
                   className="w-full h-[360px] border-0"
-                  src={getEmbedUrl(thing.location.url)}
+                  src={getEmbedUrl(thing?.location?.url)}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   onLoad={() => setMapLoading(false)}
