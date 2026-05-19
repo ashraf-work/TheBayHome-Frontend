@@ -2,7 +2,7 @@ import { api } from "@/services/api";
 import { thingsToDoData } from "@/data/thingsToDo";
 import ThingsToDoExplorer from "@/components/things-to-do/ThingsToDoExplorer";
 
-export const revalidate = 300;
+export const revalidate = 0;
 
 export const metadata = {
   title: "Things To Do in the Florida Keys | The Keys Vibe",
