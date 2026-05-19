@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import AvailabilityCard from "@/components/property/AvailabilityCard";
 import { api } from "@/services/api";
 import ImagePreviewModal from "@/components/property/ImagePreviewModel";
+import { getEmbedUrl } from "@/lib/utils";
 
 export default function PropertyDetailClient({
   propertyId,
@@ -23,19 +24,7 @@ export default function PropertyDetailClient({
   const [visibleImages, setVisibleImages] = useState(9);
   const [previewImage, setPreviewImage] = useState(null);
 
-  const getEmbedUrl = (url) => {
-    if (!url) return "";
 
-    const match = url.match(/place\/([^/]+)/);
-
-    if (!match) return "";
-
-    const place = match[1].replaceAll("+", " ");
-
-    return `https://www.google.com/maps?q=${encodeURIComponent(
-      place,
-    )}&output=embed`;
-  };
 
   useEffect(() => {
     if (!id || initialProperty) return;

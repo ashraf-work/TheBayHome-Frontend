@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Search } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
+import Link from "next/link";
 
 export default function ThingsToDoExplorer({ data }) {
   const tabs = useMemo(() => Object.keys(data), [data]);
@@ -80,18 +81,20 @@ export default function ThingsToDoExplorer({ data }) {
                       key={entry._id || `${area}-${entry.name}`}
                       className="overflow-hidden rounded-lg border border-[var(--color-border)] bg-white transition-shadow hover:shadow-md"
                     >
-                      <div className="relative aspect-[4/3]">
-                        <Image
-                          src={entry.image}
-                          alt={entry.name}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 768px) 50vw, 25vw"
-                        />
-                      </div>
-                      <div className="flex min-h-[56px] items-center justify-center p-3 text-center text-sm font-medium leading-tight text-[var(--color-foreground)]">
-                        {entry.name}
-                      </div>
+                      <Link href={`/things-to-do/${entry._id}`}>
+                        <div className="relative aspect-[4/3]">
+                          <Image
+                            src={entry.image}
+                            alt={entry.name}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 50vw, 25vw"
+                          />
+                        </div>
+                        <div className="flex min-h-[56px] items-center justify-center p-3 text-center text-sm font-medium leading-tight text-[var(--color-foreground)]">
+                          {entry.name}
+                        </div>
+                      </Link>
                     </article>
                   ))}
                 </div>

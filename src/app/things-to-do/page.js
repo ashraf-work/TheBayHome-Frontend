@@ -10,6 +10,8 @@ export const metadata = {
     "Explore restaurants, fishing, bird watching, and local Florida Keys favorites near The Keys Vibe vacation rentals.",
 };
 
+
+
 function groupThingsToDo(items) {
   if (!Array.isArray(items) || items.length === 0) return thingsToDoData;
 

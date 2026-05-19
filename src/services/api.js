@@ -1,3 +1,5 @@
+import { get } from "react-hook-form";
+
 const SERVER_BASE =
   process.env.NEXT_PUBLIC_API_BASE_URL ||
   "http://localhost:4000/api";
@@ -110,6 +112,7 @@ export const api = {
 
   // Content
   listThingsToDo: () => request("/thingtodo"),
+  getThingToDo: (id) => request(`/thingtodo/${id}`),
   listBlogs: (query) => request(withQuery("/blog", query)),
   getBlog: (id) => request(`/blog/${id}`),
 

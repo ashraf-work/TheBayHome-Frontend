@@ -10,7 +10,7 @@ export function formatCurrency(amount, currency = "USD") {
     style: "currency",
     currency,
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0
+    maximumFractionDigits: 0,
   }).format(amount);
 }
 
@@ -20,7 +20,7 @@ export function formatDate(date) {
   return d.toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
-    year: "numeric"
+    year: "numeric",
   });
 }
 
@@ -39,3 +39,17 @@ export function diffInNights(checkIn, checkOut) {
 export function uid(prefix = "id") {
   return `${prefix}_${Math.random().toString(36).slice(2, 10)}${Date.now().toString(36)}`;
 }
+
+export const getEmbedUrl = (url) => {
+  if (!url) return "";
+
+  const match = url.match(/place\/([^/]+)/);
+
+  if (!match) return "";
+
+  const place = match[1].replaceAll("+", " ");
+
+  return `https://www.google.com/maps?q=${encodeURIComponent(
+    place,
+  )}&output=embed`;
+};
