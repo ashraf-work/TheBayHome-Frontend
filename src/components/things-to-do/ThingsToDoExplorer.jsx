@@ -72,9 +72,7 @@ export default function ThingsToDoExplorer({ data }) {
           ) : (
             Object.entries(filtered).map(([area, items]) => (
               <section key={area} className="mt-10">
-                <h2 className="font-display text-2xl font-semibold text-[var(--color-primary)]">
-                  {area}
-                </h2>
+           
                 <div className="mt-5 grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4">
                   {items.map((entry) => (
                     <article
